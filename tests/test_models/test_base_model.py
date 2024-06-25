@@ -79,6 +79,7 @@ class test_basemodel(unittest.TestCase):
         n = {'Name': 'test'}
         with self.assertRaises(KeyError):
             new = self.value(**n)
+            #raise KeyError
 
     def test_id(self):
         """ """
