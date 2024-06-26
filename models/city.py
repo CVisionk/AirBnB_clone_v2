@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-""" City Module for HBNB project """
-from models.base_model import BaseModel, Base
+"""Defines the City class."""
+from models.base_model import Base
 from models.base_model import BaseModel
-from sqlalchemy import Column, ForeignKey, String
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+from sqlalchemy import String
 from sqlalchemy.orm import relationship
 
 
-class City(BaseModel):
+class City(BaseModel, Base):
     """Represents a city for a MySQL database.
 
     Inherits from SQLAlchemy Base and links to the MySQL table cities.
