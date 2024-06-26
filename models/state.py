@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """Defines the State class."""
-import models
 from os import getenv
 from models.base_model import Base, BaseModel
-from models.city import City
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
@@ -27,6 +25,8 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """Get a list of all related City objects."""
+            import models
+            from models.city import City
             city_list = []
             for city in list(models.storage.all(City).values()):
                 if city.state_id == self.id:
