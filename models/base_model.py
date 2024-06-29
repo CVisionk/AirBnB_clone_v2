@@ -35,8 +35,8 @@ class BaseModel:
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
         d = self.__dict__.copy()
-        if dictionary.__contains__('_sa_instance_state'):
-            dictionary.pop('_sa_instance_state')
+        if d.__contains__('_sa_instance_state'):
+            d.pop('_sa_instance_state')
         return "[{}] ({}) {}".format(type(self).__name__, self.id, d)
 
     def save(self):
@@ -57,7 +57,7 @@ class BaseModel:
         if dictionary.__contains__('_sa_instance_state'):
             dictionary.pop('_sa_instance_state')
         return dictionary
-    
+
     def delete(self):
         """Delete the current instance from storage."""
         from models import storage
