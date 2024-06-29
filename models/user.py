@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 from sqlalchemy import Column
 from sqlalchemy import String
 from sqlalchemy.orm import relationship
+from sqlalchemy import orm
 
 
 class User(BaseModel, Base):
