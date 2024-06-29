@@ -34,11 +34,12 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program."""
         raise SystemExit
+        return True
 
     def do_EOF(self, line):
         """EOF signal to exit the program."""
         print("")
-        raise SystemExit
+        return True
 
     def do_create(self, line):
         """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
@@ -52,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
             kwargs = {}
             for i in range(1, len(my_list)):
                 key, value = tuple(my_list[i].split("="))
-                if value[0] == '"':
+                if value[0] == '"' and value[-1] == '"':
                     value = value.strip('"').replace("_", " ")
                 else:
                     try:
