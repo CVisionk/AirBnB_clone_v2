@@ -18,7 +18,7 @@ from sqlalchemy.orm.session import Session
 from sqlalchemy.engine.base import Engine
 
 
-class TestDBStorage(unittest.TestCase):
+class test_DBStorage(unittest.TestCase):
     """Unittests for testing the DBStorage class."""
 
     @classmethod
