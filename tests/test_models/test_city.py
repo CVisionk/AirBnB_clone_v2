@@ -14,7 +14,9 @@ class test_City(test_basemodel):
 
     def test_name_column_attributes(self):
         """
-        Test that the 'name' column of Amenity is a Column of type String with a maximum length of 128 and is not nullable.
+        Test that the 'name' column of Amenity
+        is a Column of type String with a maximum
+        length of 128 and is not nullable.
         """
         mapper = inspect(City)
         name_column = mapper.columns.get('name')
@@ -22,7 +24,7 @@ class test_City(test_basemodel):
         self.assertIsInstance(name_column.type, String)
         self.assertEqual(name_column.type.length, 128)
         self.assertFalse(name_column.nullable)
-    
+
     def test_state_id(self):
         """
         Test state_id is Column of type string
@@ -34,4 +36,5 @@ class test_City(test_basemodel):
         self.assertEqual(state_id_c.type.length, 60)
         self.assertFalse(state_id_c.nullable)
         foreign_keys = state_id_c.foreign_keys
-        self.assertTrue(any(fk for fk in foreign_keys if fk.target_fullname == 'states.id'))
+        self.assertTrue(any(fk for fk in foreign_keys if
+                            fk.target_fullname == 'states.id'))

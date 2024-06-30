@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 from models import storage
 import os
 
+
 @unittest.skipIf(True, "Testing fo dg stotage")
 class test_fileStorage(unittest.TestCase):
     """ Class to test the file storage method """
@@ -21,7 +22,7 @@ class test_fileStorage(unittest.TestCase):
         """ Remove storage file at end of tests """
         try:
             os.remove('file.json')
-        except:
+        except Exception as e:
             pass
 
     def test_obj_list_empty(self):
@@ -93,16 +94,18 @@ class test_fileStorage(unittest.TestCase):
     def test_type_objects(self):
         """ Confirm __objects is a dict """
         self.assertEqual(type(storage.all()), dict)
+
     def test_key_format(self):
         """ Key is properly formatted """
         new = BaseModel()
         _id = new.to_dict()['id']
         key_to_check = 'BaseModel.' + _id
-        
+
         # Check if the key exists in storage.all()
         self.assertIn(key_to_check, storage.all())
 
-        # Optionally, you could check if the correct instance is associated with this key
+        # Optionally, you could check if the correct
+        # instance is associated with this key
         self.assertEqual(storage.all()[key_to_check], new)
 
     def test_storage_var_created(self):

@@ -25,7 +25,8 @@ class test_basemodel(unittest.TestCase):
         """Test """
         try:
             os.remove('file.json')
-        except:
+        except Exception as e:
+            e
             pass
 
     def test_default(self):
@@ -47,6 +48,7 @@ class test_basemodel(unittest.TestCase):
         copy.update({1: 2})
         with self.assertRaises(TypeError):
             new = BaseModel(**copy)
+
     @unittest.skipIf(True, "json test save not required for db storage")
     def test_save(self):
         """ Testing save """

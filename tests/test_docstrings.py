@@ -81,18 +81,22 @@ class TestDocstrings(unittest.TestCase):
                 # Check class docstring
                 if not ast.get_docstring(item):
                     self.fail(
-                        f'Class {item.name} in {file_path} is missing a docstring.')
+                        (f'Class {item.name} in {file_path}'
+                         'is missing a docstring.'))
                 # Check methods in class
                 for class_item in item.body:
                     if isinstance(class_item, ast.FunctionDef):
                         if not ast.get_docstring(class_item):
-                            self.fail(
-                                f'Method {class_item.name} in class {item.name} in {file_path} is missing a docstring.')
+                            message = (f'Method {class_item.name} in '
+                                       f'class {item.name} in'
+                                       f'{file_path} is missing a docstring.')
+                            self.fail(message)
             elif isinstance(item, ast.FunctionDef):
                 # Check function docstring
                 if not ast.get_docstring(item):
-                    self.fail(
-                        f'Function {item.name} in {file_path} is missing a docstring.')
+                    message = (f'Function {item.name} in {file_path}'
+                               ' is missing a docstring.')
+                    self.fail(message)
 
 
 # Dynamically create test methods for each file
@@ -105,7 +109,8 @@ def add_dynamic_tests():
     python_files = navigator.find_python_files()
     for file_path in python_files:
         test_method = create_test(file_path)
-        test_path = file_path.replace("/", "_").replace(".", "_").replace("\\", "_")
+        test_path = file_path.replace("/",
+                                      "_").replace(".", "_").replace("\\", "_")
         test_name = f'test_docstring_{test_path}'
         setattr(TestDocstrings, test_name, test_method)
 

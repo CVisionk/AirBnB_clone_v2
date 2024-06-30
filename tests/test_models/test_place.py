@@ -10,7 +10,6 @@ from sqlalchemy import Column, inspect, Integer, Float
 import models
 
 
-
 class test_Place(test_basemodel):
     """Test """
 
@@ -37,14 +36,16 @@ class test_Place(test_basemodel):
         self.assertIsInstance(city_id_column, Column)
         self.assertEqual(city_id_column.type.length, 60)
         self.assertFalse(city_id_column.nullable)
-        self.assertEqual(city_id_column.foreign_keys.pop().column.table.name, 'cities')
+        self.assertEqual(city_id_column.foreign_keys.pop().column.table.name,
+                         'cities')
 
         # Test user_id column
         user_id_column = mapper.columns.get('user_id')
         self.assertIsInstance(user_id_column, Column)
         self.assertEqual(user_id_column.type.length, 60)
         self.assertFalse(user_id_column.nullable)
-        self.assertEqual(user_id_column.foreign_keys.pop().column.table.name, 'users')
+        self.assertEqual(user_id_column.foreign_keys.pop().column.table.name,
+                         'users')
 
         # Test name column
         name_column = mapper.columns.get('name')
@@ -60,36 +61,36 @@ class test_Place(test_basemodel):
         # Test number_rooms column
         number_rooms_column = mapper.columns.get('number_rooms')
         self.assertIsInstance(number_rooms_column, Column)
-        #self.assertEqual(number_rooms_column.type, Integer)
-        #self.assertEqual(number_rooms_column.default, 0)
+        # self.assertEqual(number_rooms_column.type, Integer)
+        # self.assertEqual(number_rooms_column.default, 0)
 
         # Test number_bathrooms column
         number_bathrooms_column = mapper.columns.get('number_bathrooms')
         self.assertIsInstance(number_bathrooms_column, Column)
-        #self.assertEqual(number_bathrooms_column.type, Integer)
-        #self.assertEqual(number_bathrooms_column.default, 0)
+        # self.assertEqual(number_bathrooms_column.type, Integer)
+        # self.assertEqual(number_bathrooms_column.default, 0)
 
         # Test max_guest column
         max_guest_column = mapper.columns.get('max_guest')
         self.assertIsInstance(max_guest_column, Column)
-        #self.assertEqual(max_guest_column.type, Integer)
-        #self.assertEqual(max_guest_column.default, 0)
+        # self.assertEqual(max_guest_column.type, Integer)
+        # self.assertEqual(max_guest_column.default, 0)
 
         # Test price_by_night column
         price_by_night_column = mapper.columns.get('price_by_night')
         self.assertIsInstance(price_by_night_column, Column)
-        #self.assertEqual(price_by_night_column.type, Integer)
-        #self.assertEqual(price_by_night_column.default, 0)
+        # self.assertEqual(price_by_night_column.type, Integer)
+        # self.assertEqual(price_by_night_column.default, 0)
 
         # Test latitude column
         latitude_column = mapper.columns.get('latitude')
         self.assertIsInstance(latitude_column, Column)
-        #self.assertEqual(latitude_column.type, Float)
+        # self.assertEqual(latitude_column.type, Float)
 
         # Test longitude column
         longitude_column = mapper.columns.get('longitude')
         self.assertIsInstance(longitude_column, Column)
-        #self.assertEqual(longitude_column.type, Float)
+        # self.assertEqual(longitude_column.type, Float)
 
     @unittest.skipIf(True, "relationship")
     def test_relationships(self):
@@ -110,7 +111,8 @@ class test_Place(test_basemodel):
         self.assertIn('amenities', relationships)
         amenities_relationship = relationships['amenities']
         self.assertEqual(amenities_relationship.argument, Amenity)
-        self.assertEqual(amenities_relationship.secondary.name, 'place_amenity')
+        self.assertEqual(amenities_relationship.secondary.name,
+                         'place_amenity')
 
     @unittest.skipIf(True, "Storage")
     def test_reviews_property_file(self):
@@ -140,7 +142,8 @@ class test_Place(test_basemodel):
         Test the amenities property for file storage.
         """
         if getenv("HBNB_TYPE_STORAGE") != "db":
-            place = Place(id='place_id', amenity_ids=['amenity1_id', 'amenity2_id'])
+            place = Place(id='place_id',
+                          amenity_ids=['amenity1_id', 'amenity2_id'])
             amenity1 = Amenity(id='amenity1_id')
             amenity2 = Amenity(id='amenity2_id')
             amenity3 = Amenity(id='amenity3_id')
@@ -160,4 +163,3 @@ class test_Place(test_basemodel):
             place.amenities = [amenity3]
             self.assertIn(amenity3, place.amenities)
             self.assertEqual(len(place.amenities), 1)
-

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" 
+"""
 Test:
 """
 from tests.test_models.test_base_model import test_basemodel
@@ -9,7 +9,7 @@ from sqlalchemy import Column, String, inspect
 
 class test_Amenity(test_basemodel):
     """
-    Test Amenity  
+    Test Amenity
     """
 
     def __init__(self, *args, **kwargs):
@@ -20,7 +20,9 @@ class test_Amenity(test_basemodel):
 
     def test_name_column_attributes(self):
         """
-        Test that the 'name' column of Amenity is a Column of type String with a maximum length of 128 and is not nullable.
+        Test that the 'name' column of Amenity is
+        a Column of type String with a maximum length
+        of 128 and is not nullable.
         """
         mapper = inspect(Amenity)
         name_column = mapper.columns.get('name')

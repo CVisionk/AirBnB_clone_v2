@@ -69,4 +69,3 @@ class test_User(test_basemodel):
         reviews_relationship = User.__mapper__.relationships['reviews']
         self.assertEqual(reviews_relationship.argument, "Review")
         self.assertEqual(reviews_relationship.backref, 'user')
-    

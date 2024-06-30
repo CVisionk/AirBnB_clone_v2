@@ -40,7 +40,8 @@ class test_review(test_basemodel):
         self.assertIsInstance(place_id_column, Column)
         self.assertEqual(place_id_column.type.length, 60)
         self.assertFalse(place_id_column.nullable)
-        self.assertEqual(place_id_column.foreign_keys.pop().column.table.name, 'places')
+        self.assertEqual(place_id_column.foreign_keys.pop().column.table.name,
+                         'places')
 
     def test_user_id_column(self):
         """
@@ -51,8 +52,8 @@ class test_review(test_basemodel):
         self.assertIsInstance(user_id_column, Column)
         self.assertEqual(user_id_column.type.length, 60)
         self.assertFalse(user_id_column.nullable)
-        self.assertEqual(user_id_column.foreign_keys.pop().column.table.name, 'users')
-
+        self.assertEqual(user_id_column.foreign_keys.pop().column.table.name,
+                         'users')
 
     @unittest.skipIf(True, "Relationships")
     def test_relationships(self):
