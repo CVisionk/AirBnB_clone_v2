@@ -1,10 +1,8 @@
 #!/bin/bash
 
 # Install Nginx if it is not already installed
-if ! dpkg -s nginx > /dev/null 2>&1; then
-    sudo apt update
-    sudo apt install -y nginx
-fi
+sudo apt update
+sudo apt install -y nginx
 
 # Create necessary directories
 sudo mkdir -p /data/web_static/releases/test/
