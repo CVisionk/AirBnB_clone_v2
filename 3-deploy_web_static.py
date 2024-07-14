@@ -16,7 +16,6 @@ from datetime import datetime
 env.hosts = ['100.26.246.105', '100.25.2.220']
 
 
-
 def do_pack():
     """Generates a .tgz archive from the contents of the web_static folder."""
     local("mkdir -p versions")
@@ -26,6 +25,7 @@ def do_pack():
     if result.failed:
         return None
     return archive_name
+
 
 def do_deploy(archive_path):
     """distributes an archive to the web servers"""
@@ -48,6 +48,7 @@ def do_deploy(archive_path):
     except Exception as e:
         print(e)
         return False
+
 
 def deploy():
     """creates and distributes an archive to the web servers"""
