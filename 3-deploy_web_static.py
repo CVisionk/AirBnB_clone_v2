@@ -14,6 +14,7 @@ from datetime import datetime
 
 
 env.hosts = ['100.26.246.105', '100.25.2.220']
+archive_path = None
 
 
 def do_pack():
@@ -52,7 +53,9 @@ def do_deploy(archive_path):
 
 def deploy():
     """creates and distributes an archive to the web servers"""
-    archive_path = do_pack()
+    global archive_path
+    if archive_path is None:
+        archive_path = do_pack()
     if archive_path is None:
         return False
     return do_deploy(archive_path)
