@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Fabric script to genereate tgz archive
+execute: fab -f 1-pack_web_static.py do_pack
+"""
 from fabric.api import local
 from datetime import datetime
 
